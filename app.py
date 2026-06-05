@@ -1,421 +1,299 @@
 import streamlit as st
 import time
-from datetime import datetime, timedelta
+from datetime import datetime
 
 from styles import load_css
-from components.pet import render_pet, render_pet_status, celebrate_animation
+from components.pet import render_pet, render_pet_status, celebrate, get_pet_state
 from components.navigation import render_bottom_nav
 from components.breathe_circle import render_breathe_page
 
-
-# Page config
 st.set_page_config(
-    page_title="Cozymo - Wellness Pet",
+    page_title="Cozymo",
     page_icon="🌿",
     layout="centered",
     initial_sidebar_state="collapsed",
 )
 
 
-def init_session_state():
-    """Initialize all session state variables."""
+def init():
     defaults = {
         "page": "home",
-        "pet": {
-            "name": "Cozymo",
-            "level": 1,
-            "energy": 60,
-            "mood": 60,
-            "xp": 30,
-        },
-        "streak": {
-            "current": 3,
-            "best": 7,
-            "last_active": datetime.now().strftime("%Y-%m-%d"),
-        },
+        "pet": {"name": "Cozymo", "level": 1, "energy": 55, "mood": 55, "xp": 35},
+        "streak": {"current": 3, "best": 7, "last_active": datetime.now().strftime("%Y-%m-%d")},
         "schedule": [
             {"time": "08:00", "activity": "Morning Breathe", "completed": False, "type": "breathe"},
             {"time": "12:30", "activity": "Lunch Walk", "completed": False, "type": "exercise"},
             {"time": "18:00", "activity": "Badminton", "completed": False, "type": "exercise"},
             {"time": "21:30", "activity": "Evening Relax", "completed": False, "type": "breathe"},
         ],
-        "activities_today": {
-            "breathe": 0,
-            "exercise": 0,
-            "music": 0,
-        },
+        "activities_today": {"breathe": 0, "exercise": 0, "music": 0},
         "breathing_active": False,
         "exercise_active": False,
         "selected_exercise": None,
         "last_activity": None,
         "show_level_up": False,
+        "breathe_dur": 3,
     }
+    for k, v in defaults.items():
+        if k not in st.session_state:
+            st.session_state[k] = v
 
-    for key, value in defaults.items():
-        if key not in st.session_state:
-            st.session_state[key] = value
 
+# ─── Pages ───
 
-# --- Page Rendering Functions ---
-
-def render_home():
-    """Render the home page with pet and daily overview."""
+def page_home():
     pet = st.session_state.pet
     streak = st.session_state.streak
 
-    # Header
-    col1, col2 = st.columns([3, 1])
-    with col1:
-        st.markdown('<div class="page-title">Good Day!</div>', unsafe_allow_html=True)
-        st.markdown(f'<div class="page-subtitle">Your streak: {streak["current"]} days 🔥</div>', unsafe_allow_html=True)
-    with col2:
-        st.markdown(f"""
-        <div style="text-align: right;">
-            <div class="level-badge">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                Lv.{pet["level"]}
-            </div>
-        </div>
-        """, unsafe_allow_html=True)
+    c1, c2 = st.columns([3, 1])
+    with c1:
+        st.html('<div class="title-xl">Good Day!</div>')
+        st.html(f'<div class="body" style="margin-bottom:16px;">Day {streak["current"]} streak</div>')
+    with c2:
+        st.html(f'<div style="text-align:right;"><div class="badge badge-gold">Lv.{pet["level"]}</div></div>')
 
-    # Pet visualization
-    st.markdown(render_pet(pet["energy"], pet["mood"]), unsafe_allow_html=True)
+    render_pet(pet["energy"], pet["mood"])
+    render_pet_status(pet["energy"], pet["mood"], pet["level"], pet["xp"])
 
-    # Pet status bars
-    st.markdown(render_pet_status(pet["energy"], pet["mood"], pet["level"], pet["xp"]), unsafe_allow_html=True)
-
-    # Today's Schedule Overview
-    st.markdown('<div style="font-size: 17px; font-weight: 600; color: #134E4A; margin: 24px 0 12px 0;">Today\'s Plan</div>', unsafe_allow_html=True)
-
-    completed_count = sum(1 for item in st.session_state.schedule if item["completed"])
-    total_count = len(st.session_state.schedule)
+    st.html('<div class="overline" style="margin:20px 0 10px 0;">Today\'s Plan</div>')
 
     for item in st.session_state.schedule:
-        icon = "🫁" if item["type"] == "breathe" else "🏃"
-        status_style = "text-decoration: line-through; opacity: 0.6;" if item["completed"] else ""
-        check_icon = "✓" if item["completed"] else "○"
-
-        st.markdown(f"""
-        <div class="schedule-item" style="{status_style}">
-            <div style="font-size: 18px;">{icon}</div>
-            <div style="flex: 1;">
-                <div style="font-weight: 500; font-size: 14px; color: #374151;">{item["activity"]}</div>
-                <div style="font-size: 12px; color: #94A3B8;">{item["time"]}</div>
+        done = item["completed"]
+        opacity = "opacity:0.45;" if done else ""
+        dot_class = item["type"]
+        check = '<div style="width:18px;height:18px;border-radius:50%;background:#0D9488;display:flex;align-items:center;justify-content:center;color:white;font-size:11px;font-weight:700;">✓</div>' if done else '<div style="width:18px;height:18px;border-radius:50%;border:2px solid #E5E7EB;"></div>'
+        st.html(f"""
+        <div class="schedule-row" style="{opacity}">
+            <div class="schedule-dot {dot_class}"></div>
+            <div style="flex:1;min-width:0;">
+                <div style="font-weight:500;font-size:14px;color:#1F2937;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{item['activity']}</div>
+                <div class="caption">{item['time']}</div>
             </div>
-            <div style="font-size: 16px; color: {'#0D9488' if item['completed'] else '#CBD5E1'};">{check_icon}</div>
+            <div style="flex-shrink:0;">{check}</div>
         </div>
-        """, unsafe_allow_html=True)
+        """)
 
-    # Quick actions
-    st.markdown('<div style="margin-top: 20px;"></div>', unsafe_allow_html=True)
-    col1, col2 = st.columns(2)
-    with col1:
-        if st.button("Quick Breathe", type="primary", use_container_width=True, key="quick_breathe"):
-            st.session_state.page = "breathe"
-            st.rerun()
-    with col2:
-        if st.button("Start Moving", type="secondary", use_container_width=True, key="quick_move"):
-            st.session_state.page = "activities"
-            st.rerun()
+    c1, c2 = st.columns(2)
+    with c1:
+        if st.button("Quick Breathe", type="primary", use_container_width=True, key="q_breathe"):
+            st.session_state.page = "breathe"; st.rerun()
+    with c2:
+        if st.button("Start Moving", type="secondary", use_container_width=True, key="q_move"):
+            st.session_state.page = "activities"; st.rerun()
 
 
-def render_activities():
-    """Render the activities/exercise page."""
-    st.markdown('<div class="page-title">Move</div>', unsafe_allow_html=True)
-    st.markdown('<div class="page-subtitle">Choose an activity with Cozymo</div>', unsafe_allow_html=True)
+def page_activities():
+    st.html('<div class="title-xl">Move</div>')
+    st.html('<div class="body" style="margin-bottom:20px;">Choose an activity</div>')
 
-    # Exercise options
     exercises = [
-        ("badminton", "Badminton", "🏸", "Great cardio & fun with friends"),
-        ("basketball", "Basketball", "🏀", "Team sport for energy boost"),
-        ("running", "Running", "🏃", "Clear your mind, build stamina"),
-        ("swimming", "Swimming", "🏊", "Full body, low impact"),
-        ("yoga", "Yoga", "🧘", "Flexibility and calm"),
-        ("other", "Other", "💪", "Any movement counts!"),
+        ("badminton", "Badminton", "Great cardio & fun with friends", "#0D9488"),
+        ("basketball", "Basketball", "Team sport for energy boost", "#F59E0B"),
+        ("running", "Running", "Clear your mind, build stamina", "#EF4444"),
+        ("swimming", "Swimming", "Full body, low impact", "#3B82F6"),
+        ("yoga", "Yoga", "Flexibility and calm", "#8B5CF6"),
+        ("other", "Other", "Any movement counts", "#6B7280"),
     ]
 
-    if not st.session_state.get("exercise_active", False):
-        # Show exercise selection
-        for ex_id, name, emoji, desc in exercises:
-            # Use a card-like button
+    if not st.session_state.get("exercise_active"):
+        for eid, name, desc, color in exercises:
             if st.button(
-                f"**{emoji} {name}**\n\n{desc}",
-                key=f"ex_{ex_id}",
+                f"{name}\n\n{desc}",
+                key=f"ex_{eid}",
                 use_container_width=True,
             ):
-                st.session_state.selected_exercise = {"id": ex_id, "name": name, "emoji": emoji}
+                st.session_state.selected_exercise = {"id": eid, "name": name, "color": color}
                 st.session_state.exercise_active = True
-                st.session_state.exercise_start_time = time.time()
+                st.session_state.exercise_start = time.time()
                 st.rerun()
-
-            # Add spacing between buttons
-            st.markdown("<div style='height: 4px;'></div>", unsafe_allow_html=True)
-
     else:
-        # Active exercise timer
-        exercise = st.session_state.selected_exercise
-        elapsed = time.time() - st.session_state.exercise_start_time
-        mins = int(elapsed // 60)
-        secs = int(elapsed % 60)
+        ex = st.session_state.selected_exercise
+        elapsed = time.time() - st.session_state.exercise_start
+        m, s = int(elapsed // 60), int(elapsed % 60)
+        color = ex.get("color", "#0D9488")
 
-        st.markdown(f"""
-        <div style="text-align: center; padding: 40px 0;">
-            <div style="font-size: 64px; margin-bottom: 20px;">{exercise['emoji']}</div>
-            <div class="timer-display">{mins:02d}:{secs:02d}</div>
-            <div style="font-size: 18px; font-weight: 600; color: #134E4A; margin-top: 12px;">{exercise['name']}</div>
-            <div style="font-size: 14px; color: #64748B; margin-top: 4px;">Cozymo is cheering for you!</div>
+        st.html(f"""
+        <div style="text-align:center;padding:36px 0;">
+            <div style="width:72px;height:72px;border-radius:20px;background:{color};display:flex;align-items:center;justify-content:center;margin:0 auto 20px auto;color:white;font-size:28px;font-weight:700;">
+                {ex['name'][0]}
+            </div>
+            <div class="timer-digits">{m:02d}:{s:02d}</div>
+            <div class="title-md" style="margin-top:12px;">{ex['name']}</div>
+            <div class="body">Cozymo is cheering for you</div>
         </div>
-        """, unsafe_allow_html=True)
+        """)
 
-        # Pet cheering animation (simple bounce)
-        st.markdown("""
-        <div style="text-align: center; margin: 20px 0;">
-            <div style="display: inline-block; animation: float 1s ease-in-out infinite;">🌟</div>
-        </div>
-        """, unsafe_allow_html=True)
-
-        col1, col2 = st.columns(2)
-        with col1:
-            if st.button("Finish", type="primary", use_container_width=True, key="finish_exercise"):
-                # Award benefits
+        c1, c2 = st.columns(2)
+        with c1:
+            if st.button("Finish", type="primary", use_container_width=True, key="ex_finish"):
+                dur = max(1, int(elapsed / 60))
                 pet = st.session_state.pet
-                duration_min = max(1, int(elapsed / 60))
-                energy_gain = min(duration_min * 8, 25)
-                xp_gain = min(duration_min * 5, 20)
-
-                pet["energy"] = min(100, pet["energy"] + energy_gain)
-                pet["xp"] = min(100, pet["xp"] + xp_gain)
-
-                # Check level up
+                pet["energy"] = min(100, pet["energy"] + min(dur * 8, 25))
+                pet["xp"] = min(100, pet["xp"] + min(dur * 5, 20))
                 if pet["xp"] >= 100:
-                    pet["level"] += 1
-                    pet["xp"] = 0
+                    pet["level"] += 1; pet["xp"] = 0
                     st.session_state.show_level_up = True
-
-                # Update today's activity
-                st.session_state.activities_today["exercise"] += duration_min
+                st.session_state.activities_today["exercise"] += dur
                 st.session_state.exercise_active = False
-                st.session_state.last_activity = f"Completed {duration_min} min of {exercise['name']}"
-                st.success(f"Amazing! Energy +{energy_gain}%, XP +{xp_gain}")
+                st.session_state.last_activity = f"Completed {dur} min of {ex['name']}"
+                st.success(f"Amazing! Energy +{min(dur*8,25)}%, XP +{min(dur*5,20)}")
                 st.rerun()
-
-        with col2:
-            if st.button("Cancel", type="secondary", use_container_width=True, key="cancel_exercise"):
+        with c2:
+            if st.button("Cancel", type="secondary", use_container_width=True, key="ex_cancel"):
                 st.session_state.exercise_active = False
                 st.session_state.selected_exercise = None
                 st.rerun()
 
-        # Auto-refresh timer
-        time.sleep(1)
-        st.rerun()
+        time.sleep(1); st.rerun()
 
 
-def render_schedule():
-    """Render the schedule/plan page."""
-    st.markdown('<div class="page-title">Plan</div>', unsafe_allow_html=True)
-    st.markdown('<div class="page-subtitle">Your wellness schedule</div>', unsafe_allow_html=True)
+def page_schedule():
+    st.html('<div class="title-xl">Plan</div>')
+    st.html('<div class="body" style="margin-bottom:20px;">Your wellness schedule</div>')
 
-    # Add new item section
-    with st.expander("➕ Add New Activity"):
-        col1, col2 = st.columns(2)
-        with col1:
+    with st.expander("Add Activity"):
+        c1, c2 = st.columns(2)
+        with c1:
             new_time = st.time_input("Time", value=datetime.strptime("09:00", "%H:%M").time(), key="new_time")
-        with col2:
+        with c2:
             new_type = st.selectbox("Type", ["breathe", "exercise", "music"], key="new_type")
-
-        new_activity = st.text_input("Activity Name", placeholder="e.g., Morning Jog", key="new_activity")
-
-        if st.button("Add to Schedule", type="primary", use_container_width=True, key="add_schedule"):
-            time_str = new_time.strftime("%H:%M")
+        new_name = st.text_input("Name", placeholder="Morning jog", key="new_name")
+        if st.button("Add", type="primary", use_container_width=True, key="add_sch"):
             st.session_state.schedule.append({
-                "time": time_str,
-                "activity": new_activity or f"New {new_type.title()}",
-                "completed": False,
-                "type": new_type,
+                "time": new_time.strftime("%H:%M"),
+                "activity": new_name or f"New {new_type.title()}",
+                "completed": False, "type": new_type,
             })
-            # Sort by time
             st.session_state.schedule.sort(key=lambda x: x["time"])
-            st.success("Added to schedule!")
             st.rerun()
 
-    # Schedule list
-    st.markdown('<div style="margin-top: 20px;"></div>', unsafe_allow_html=True)
+    st.html('<div style="margin-top:16px;"></div>')
 
     for idx, item in enumerate(st.session_state.schedule):
-        icon = "🫁" if item["type"] == "breathe" else "🏃" if item["type"] == "exercise" else "🎵"
-        completed = item["completed"]
-
-        col1, col2, col3 = st.columns([1, 6, 1])
-        with col1:
-            st.markdown(f"<div style='font-size: 20px; text-align: center; padding-top: 8px;'>{icon}</div>", unsafe_allow_html=True)
-        with col2:
-            st.markdown(f"""
-            <div style="{'text-decoration: line-through; opacity: 0.6;' if completed else ''}">
-                <div style="font-weight: 500; font-size: 14px; color: #374151;">{item['activity']}</div>
-                <div style="font-size: 12px; color: #94A3B8;">{item['time']}</div>
+        done = item["completed"]
+        dot = item["type"]
+        st.html(f"""
+        <div class="schedule-row{' done' if done else ''}">
+            <div class="schedule-dot {dot}"></div>
+            <div style="flex:1;">
+                <div style="font-weight:500;font-size:14px;color:#1F2937;{'text-decoration:line-through;' if done else ''}">{item['activity']}</div>
+                <div class="caption">{item['time']}</div>
             </div>
-            """, unsafe_allow_html=True)
-        with col3:
-            if st.checkbox("Done", value=completed, key=f"check_{idx}", label_visibility="collapsed"):
-                if not completed:
-                    st.session_state.schedule[idx]["completed"] = True
-                    # Award small bonus
-                    pet = st.session_state.pet
-                    pet["xp"] = min(100, pet["xp"] + 5)
-                    if pet["xp"] >= 100:
-                        pet["level"] += 1
-                        pet["xp"] = 0
-                        st.session_state.show_level_up = True
-                    st.rerun()
-            else:
-                if completed:
-                    st.session_state.schedule[idx]["completed"] = False
-                    st.rerun()
+        </div>
+        """)
 
-        st.markdown("<hr style='margin: 8px 0; border: none; border-top: 1px solid #E2E8F0;'>", unsafe_allow_html=True)
+        # Hidden checkbox for toggling
+        if st.checkbox("Done", value=done, key=f"sch_{idx}", label_visibility="collapsed"):
+            if not done:
+                st.session_state.schedule[idx]["completed"] = True
+                pet = st.session_state.pet
+                pet["xp"] = min(100, pet["xp"] + 5)
+                if pet["xp"] >= 100:
+                    pet["level"] += 1; pet["xp"] = 0
+                    st.session_state.show_level_up = True
+                st.rerun()
+        else:
+            if done:
+                st.session_state.schedule[idx]["completed"] = False
+                st.rerun()
 
-    # Smart recommendations
-    st.markdown('<div style="font-size: 17px; font-weight: 600; color: #134E4A; margin: 24px 0 12px 0;">💡 Smart Recommendations</div>', unsafe_allow_html=True)
-
-    # Simple recommendation logic
+    st.html('<div class="overline" style="margin:20px 0 10px 0;">Recommendations</div>')
     pet = st.session_state.pet
     recs = []
-    if pet["energy"] < 50:
-        recs.append("Cozymo's energy is low. Try a light walk or stretching.")
-    if pet["mood"] < 50:
-        recs.append("Cozymo seems stressed. A breathing session would help!")
-    if not recs:
-        recs.append("Cozymo is doing well! Maintain your routine.")
-
+    if pet["energy"] < 50: recs.append("Cozymo's energy is low. Try a light walk.")
+    if pet["mood"] < 50: recs.append("Cozymo seems stressed. Try breathing.")
+    if not recs: recs.append("Cozymo is doing well! Keep it up.")
     for rec in recs:
-        st.info(rec)
+        st.html(f'<div class="card" style="padding:12px 14px;margin-bottom:8px;"><div class="body" style="margin:0;">{rec}</div></div>')
 
 
-def render_profile():
-    """Render the profile/pet stats page."""
+def page_profile():
     pet = st.session_state.pet
     streak = st.session_state.streak
-    activities = st.session_state.activities_today
+    acts = st.session_state.activities_today
 
-    st.markdown('<div class="page-title">Profile</div>', unsafe_allow_html=True)
-    st.markdown('<div class="page-subtitle">Your wellness journey</div>', unsafe_allow_html=True)
+    st.html('<div class="title-xl">Profile</div>')
+    st.html('<div class="body" style="margin-bottom:16px;">Your wellness journey</div>')
 
-    # Pet display
-    st.markdown(render_pet(pet["energy"], pet["mood"], size=140), unsafe_allow_html=True)
+    render_pet(pet["energy"], pet["mood"], size=120)
 
-    # Stats grid
-    st.markdown(f"""
-    <div class="stat-grid">
-        <div class="stat-card">
-            <div class="stat-value">{pet['level']}</div>
+    total = acts["breathe"] + acts["exercise"] + acts["music"]
+
+    st.html(f"""
+    <div class="stat-grid" style="margin-top:16px;">
+        <div class="stat-box">
+            <div class="stat-num">{pet['level']}</div>
             <div class="stat-label">Level</div>
         </div>
-        <div class="stat-card">
-            <div class="stat-value">{streak['current']}</div>
-            <div class="stat-label">Day Streak</div>
+        <div class="stat-box">
+            <div class="stat-num">{streak['current']}</div>
+            <div class="stat-label">Streak</div>
         </div>
-        <div class="stat-card">
-            <div class="stat-value">{streak['best']}</div>
-            <div class="stat-label">Best Streak</div>
+        <div class="stat-box">
+            <div class="stat-num">{total}</div>
+            <div class="stat-label">Min Today</div>
         </div>
     </div>
-    """, unsafe_allow_html=True)
+    """)
 
-    # Today's activity summary
-    st.markdown('<div class="wellness-card">', unsafe_allow_html=True)
-    st.markdown('<div style="font-size: 16px; font-weight: 600; color: #134E4A; margin-bottom: 16px;">Today\'s Activity</div>', unsafe_allow_html=True)
+    st.html('<div class="card">')
+    st.html('<div class="title-sm" style="margin-bottom:12px;">Today\'s Activity</div>')
+    c1, c2, c3 = st.columns(3)
+    with c1: st.metric("Breathe", f"{acts['breathe']} min")
+    with c2: st.metric("Move", f"{acts['exercise']} min")
+    with c3: st.metric("Music", f"{acts['music']} min")
+    st.html('</div>')
 
-    total_mins = activities["breathe"] + activities["exercise"] + activities["music"]
-
-    col1, col2, col3 = st.columns(3)
-    with col1:
-        st.metric("Breathe", f"{activities['breathe']} min")
-    with col2:
-        st.metric("Move", f"{activities['exercise']} min")
-    with col3:
-        st.metric("Music", f"{activities['music']} min")
-
-    st.markdown(f'<div style="text-align: center; margin-top: 12px; font-size: 14px; color: #64748B;">Total: {total_mins} minutes today</div>', unsafe_allow_html=True)
-    st.markdown('</div>', unsafe_allow_html=True)
-
-    # Weekly progress (mock data for demo)
-    st.markdown('<div class="wellness-card">', unsafe_allow_html=True)
-    st.markdown('<div style="font-size: 16px; font-weight: 600; color: #134E4A; margin-bottom: 16px;">Weekly Progress</div>', unsafe_allow_html=True)
-
+    # Weekly
+    st.html('<div class="card">')
+    st.html('<div class="title-sm" style="margin-bottom:12px;">Weekly Progress</div>')
     days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
     today_idx = datetime.now().weekday()
-
-    # Mock weekly data
-    weekly_data = [45, 30, 60, 20, 40, 0, 0]
-    weekly_data[today_idx] = total_mins
+    weekly = [35, 20, 50, 15, 30, 0, 0]
+    weekly[today_idx] = total
 
     cols = st.columns(7)
-    for i, (day, mins) in enumerate(zip(days, weekly_data)):
+    for i, (d, v) in enumerate(zip(days, weekly)):
         is_today = i == today_idx
-        bg_color = "#0D9488" if mins > 0 else "#E2E8F0"
-        text_color = "white" if mins > 0 else "#94A3B8"
-
+        bg = "#0D9488" if v > 0 else "#F3F4F6"
+        tc = "white" if v > 0 else "#9CA3AF"
         with cols[i]:
-            st.markdown(f"""
-            <div style="
-                text-align: center;
-                padding: 8px 4px;
-                border-radius: 8px;
-                background: {bg_color};
-                color: {text_color};
-                font-size: 11px;
-                font-weight: {'600' if is_today else '500'};
-            ">
-                <div>{day}</div>
-                <div style="font-size: 13px; margin-top: 4px;">{mins}</div>
+            st.html(f"""
+            <div style="text-align:center;padding:8px 2px;border-radius:10px;background:{bg};color:{tc};font-size:11px;font-weight:{'600' if is_today else '500'};">
+                <div>{d}</div>
+                <div style="font-size:13px;margin-top:3px;font-weight:700;">{v}</div>
             </div>
-            """, unsafe_allow_html=True)
+            """)
+    st.html('</div>')
 
-    st.markdown('</div>', unsafe_allow_html=True)
-
-    # Last activity
     if st.session_state.get("last_activity"):
-        st.success(f"Last activity: {st.session_state.last_activity}")
+        st.info(f"Last: {st.session_state.last_activity}")
 
-    # Settings / Reset
-    with st.expander("⚙️ Settings"):
-        if st.button("Reset Demo Data", type="secondary", use_container_width=True, key="reset_data"):
-            for key in list(st.session_state.keys()):
-                del st.session_state[key]
+    with st.expander("Settings"):
+        if st.button("Reset Data", type="secondary", use_container_width=True, key="reset"):
+            for k in list(st.session_state.keys()): del st.session_state[k]
             st.rerun()
 
 
-# --- Main App ---
+# ─── Main ───
 
 def main():
-    """Main application entry point."""
-    init_session_state()
+    init()
     load_css()
 
-    # Check for level up celebration
-    if st.session_state.get("show_level_up", False):
-        st.balloons()
-        st.success(f"🎉 Level Up! Cozymo is now Level {st.session_state.pet['level']}!")
+    if st.session_state.get("show_level_up"):
+        st.html(celebrate())
+        st.success(f"Level Up! Cozymo is now Level {st.session_state.pet['level']}")
         st.session_state.show_level_up = False
 
-    # Render current page
-    current_page = st.session_state.get("page", "home")
+    page = st.session_state.get("page", "home")
+    if page == "home":       page_home()
+    elif page == "activities": page_activities()
+    elif page == "breathe":   render_breathe_page()
+    elif page == "schedule":  page_schedule()
+    elif page == "profile":   page_profile()
 
-    if current_page == "home":
-        render_home()
-    elif current_page == "activities":
-        render_activities()
-    elif current_page == "breathe":
-        render_breathe_page()
-    elif current_page == "schedule":
-        render_schedule()
-    elif current_page == "profile":
-        render_profile()
-
-    # Spacer for bottom nav
-    st.markdown("<div style='height: 80px;'></div>", unsafe_allow_html=True)
-
-    # Render bottom navigation
+    st.html('<div style="height:80px;"></div>')
     render_bottom_nav()
 
 

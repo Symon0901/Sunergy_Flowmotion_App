@@ -1,216 +1,140 @@
 import streamlit as st
 
 
-def get_pet_mood_state(energy: int, mood: int) -> str:
-    """Determine pet visual state based on energy and mood."""
+def get_pet_state(energy: int, mood: int) -> str:
     avg = (energy + mood) / 2
-    if avg >= 70:
-        return "happy"
-    elif avg >= 40:
-        return "neutral"
-    else:
-        return "tired"
+    if avg >= 70:   return "happy"
+    elif avg >= 40: return "neutral"
+    else:           return "tired"
 
 
-def render_pet(energy: int, mood: int, size: int = 180):
-    """Render the pet SVG with appropriate expression."""
-    state = get_pet_mood_state(energy, mood)
+def _raw_pet_svg(energy: int, mood: int, size: int = 160) -> str:
+    """Return ONLY the raw <svg>... content, no HTML wrapper."""
+    state = get_pet_state(energy, mood)
 
-    # Color based on state
-    if state == "happy":
-        body_color = "#14B8A6"
-        body_gradient = "#0D9488"
-        cheek_color = "#F472B6"
-        eye_expression = """
-            <!-- Happy eyes (curved) -->
-            <path d="M 65 85 Q 75 75 85 85" stroke="white" stroke-width="3" fill="none" stroke-linecap="round"/>
-            <path d="M 115 85 Q 125 75 135 85" stroke="white" stroke-width="3" fill="none" stroke-linecap="round"/>
-        """
-        mouth = """
-            <!-- Happy smile -->
-            <path d="M 85 105 Q 100 120 115 105" stroke="white" stroke-width="3" fill="none" stroke-linecap="round"/>
-        """
-        cheeks = f"""
-            <!-- Blush -->
-            <circle cx="60" cy="100" r="8" fill="{cheek_color}" opacity="0.4"/>
-            <circle cx="140" cy="100" r="8" fill="{cheek_color}" opacity="0.4"/>
-        """
-        bounce = "0px"
-    elif state == "neutral":
-        body_color = "#2DD4BF"
-        body_gradient = "#14B8A6"
-        eye_expression = """
-            <!-- Neutral eyes (dots) -->
-            <circle cx="75" cy="85" r="5" fill="white"/>
-            <circle cx="125" cy="85" r="5" fill="white"/>
-        """
-        mouth = """
-            <!-- Neutral mouth -->
-            <line x1="90" y1="110" x2="110" y2="110" stroke="white" stroke-width="3" stroke-linecap="round"/>
-        """
-        cheeks = ""
-        bounce = "0px"
-    else:  # tired
-        body_color = "#6B7280"
-        body_gradient = "#4B5563"
-        eye_expression = """
-            <!-- Tired eyes (lines) -->
-            <line x1="65" y1="85" x2="85" y2="85" stroke="white" stroke-width="3" stroke-linecap="round"/>
-            <line x1="115" y1="85" x2="135" y2="85" stroke="white" stroke-width="3" stroke-linecap="round"/>
-        """
-        mouth = """
-            <!-- Tired frown -->
-            <path d="M 90 115 Q 100 108 110 115" stroke="white" stroke-width="3" fill="none" stroke-linecap="round"/>
-        """
-        cheeks = ""
-        bounce = "0px"
+    colors = {
+        "happy":   {"body": "#14B8A6", "grad": "#0D9488"},
+        "neutral": {"body": "#5EEAD4", "grad": "#2DD4BF"},
+        "tired":   {"body": "#9CA3AF", "grad": "#6B7280"},
+    }[state]
 
-    # Add sparkles when happy
-    sparkles = ""
-    if state == "happy":
-        sparkles = """
-            <g opacity="0.6">
-                <circle cx="40" cy="50" r="3" fill="#FBBF24">
-                    <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/>
-                </circle>
-                <circle cx="160" cy="45" r="2" fill="#FBBF24">
-                    <animate attributeName="opacity" values="1;0.3;1" dur="1.5s" repeatCount="indefinite"/>
-                </circle>
-                <circle cx="170" cy="90" r="2.5" fill="#FBBF24">
-                    <animate attributeName="opacity" values="0.5;1;0.5" dur="2.5s" repeatCount="indefinite"/>
-                </circle>
-            </g>
-        """
+    expressions = {
+        "happy": """
+            <path d="M65 82 Q75 72 85 82" stroke="white" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <path d="M115 82 Q125 72 135 82" stroke="white" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <path d="M88 105 Q100 118 112 105" stroke="white" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <circle cx="58" cy="98" r="7" fill="#F472B6" opacity="0.35"/>
+            <circle cx="142" cy="98" r="7" fill="#F472B6" opacity="0.35"/>
+        """,
+        "neutral": """
+            <circle cx="75" cy="82" r="4.5" fill="white"/>
+            <circle cx="125" cy="82" r="4.5" fill="white"/>
+            <line x1="92" y1="108" x2="108" y2="108" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+        """,
+        "tired": """
+            <line x1="65" y1="82" x2="85" y2="82" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="115" y1="82" x2="135" y2="82" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M92 112 Q100 106 108 112" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        """,
+    }[state]
 
-    svg_html = f"""
-    <div class="pet-container">
-        <svg width="{size}" height="{size}" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <radialGradient id="bodyGrad" cx="50%" cy="40%" r="60%">
-                    <stop offset="0%" stop-color="{body_color}"/>
-                    <stop offset="100%" stop-color="{body_gradient}"/>
-                </radialGradient>
-                <filter id="glow">
-                    <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-                    <feMerge>
-                        <feMergeNode in="coloredBlur"/>
-                        <feMergeNode in="SourceGraphic"/>
-                    </feMerge>
-                </filter>
-            </defs>
+    sparkles = """
+    <g opacity="0.5">
+        <circle cx="35" cy="55" r="2.5" fill="#FBBF24"><animate attributeName="opacity" values="0.2;1;0.2" dur="2s" repeatCount="indefinite"/></circle>
+        <circle cx="165" cy="45" r="2" fill="#FBBF24"><animate attributeName="opacity" values="1;0.2;1" dur="1.8s" repeatCount="indefinite"/></circle>
+        <circle cx="155" cy="95" r="2" fill="#FBBF24"><animate attributeName="opacity" values="0.4;1;0.4" dur="2.5s" repeatCount="indefinite"/></circle>
+    </g>""" if state == "happy" else ""
 
-            <!-- Shadow -->
-            <ellipse cx="100" cy="175" rx="50" ry="10" fill="#000000" opacity="0.1">
-                <animate attributeName="rx" values="50;45;50" dur="3s" repeatCount="indefinite"/>
-                <animate attributeName="opacity" values="0.1;0.08;0.1" dur="3s" repeatCount="indefinite"/>
-            </ellipse>
+    return f"""<svg width="{size}" height="{size}" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <radialGradient id="pg" cx="50%" cy="38%" r="60%">
+            <stop offset="0%" stop-color="{colors['body']}"/>
+            <stop offset="100%" stop-color="{colors['grad']}"/>
+        </radialGradient>
+        <filter id="pglow">
+            <feGaussianBlur stdDeviation="2.5" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+    </defs>
+    <ellipse cx="100" cy="178" rx="45" ry="8" fill="#000" opacity="0.06">
+        <animate attributeName="rx" values="45;42;45" dur="4s" repeatCount="indefinite"/>
+    </ellipse>
+    {sparkles}
+    <circle cx="100" cy="100" r="68" fill="url(#pg)" filter="url(#pglow)">
+        <animate attributeName="r" values="68;70;68" dur="4s" repeatCount="indefinite"/>
+    </circle>
+    <ellipse cx="72" cy="62" rx="18" ry="10" fill="white" opacity="0.15" transform="rotate(-18 72 62)"/>
+    {expressions}
+</svg>
+"""
 
-            {sparkles}
 
-            <!-- Body -->
-            <circle cx="100" cy="100" r="70" fill="url(#bodyGrad)" filter="url(#glow)">
-                <animate attributeName="r" values="70;72;70" dur="3s" repeatCount="indefinite"/>
-            </circle>
-
-            <!-- Shine -->
-            <ellipse cx="75" cy="65" rx="20" ry="12" fill="white" opacity="0.2" transform="rotate(-20 75 65)"/>
-
-            {eye_expression}
-            {mouth}
-            {cheeks}
-
-            <!-- Accessories for higher levels -->
-            <g id="accessories" opacity="0">
-                <!-- Crown for high level -->
-                <path d="M 75 35 L 85 15 L 100 30 L 115 15 L 125 35 Z" fill="#FBBF24" stroke="#F59E0B" stroke-width="2"/>
-            </g>
-        </svg>
-    </div>
-    """
-
-    return svg_html
+def render_pet(energy: int, mood: int, size: int = 160):
+    """Render pet using st.image() with raw SVG string."""
+    raw_svg = _raw_pet_svg(energy, mood, size)
+    # st.image() accepts raw SVG strings in Streamlit 1.58+
+    c1, c2, c3 = st.columns([1, 2, 1])
+    with c2:
+        st.image(raw_svg, use_container_width=False)
+    # Shadow below
+    s1, s2, s3 = st.columns([2, 2, 2])
+    with s2:
+        st.html('<div style="width:80px;height:12px;background:radial-gradient(ellipse,rgba(0,0,0,0.08) 0%,transparent 70%);border-radius:50%;margin:0 auto;"></div>')
 
 
 def render_pet_status(energy: int, mood: int, level: int, xp: int):
-    """Render pet status bars and info."""
-    state = get_pet_mood_state(energy, mood)
+    """Render pet status bars."""
+    state = get_pet_state(energy, mood)
+    msg = {"happy": "Cozymo is feeling great!", "neutral": "Cozymo could use some care.", "tired": "Cozymo needs your help!"}[state]
 
-    status_text = {
-        "happy": "Cozymo is feeling great!",
-        "neutral": "Cozymo could use some care.",
-        "tired": "Cozymo needs your help!"
-    }
-
-    html = f"""
-    <div style="text-align: center; margin-bottom: 20px;">
-        <div class="level-badge" style="margin-bottom: 8px;">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            Level {level}
+    st.html(f'''
+    <div style="text-align:center;margin-bottom:20px;">
+        <div style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:999px;font-size:12px;font-weight:600;background:linear-gradient(135deg,#FEF3C7,#FDE68A);color:#92400E;margin-bottom:6px;">
+            Lv.{level}
         </div>
-        <p style="font-size: 15px; color: #64748B; margin: 0;">{status_text[state]}</p>
+        <div style="font-size:14px;color:#9CA3AF;line-height:1.55;margin:0;">{msg}</div>
     </div>
+    ''')
 
-    <div class="wellness-card" style="margin-bottom: 16px;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-            <span style="font-size: 13px; font-weight: 500; color: #374151;">
-                <svg width="16" height="16" style="vertical-align: middle; margin-right: 6px;" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-                Energy
-            </span>
-            <span style="font-size: 13px; font-weight: 600; color: #F59E0B;">{energy}%</span>
+    bars = [
+        ("Energy", energy, "#F59E0B", "linear-gradient(90deg,#F59E0B,#FBBF24)"),
+        ("Mood", mood, "#0D9488", "linear-gradient(90deg,#0D9488,#14B8A6)"),
+        ("XP", xp, "#3B82F6", "linear-gradient(90deg,#3B82F6,#60A5FA)"),
+    ]
+
+    for label, value, color, gradient in bars:
+        st.html(f'''
+        <div style="background:#FFFFFF;border:1px solid #F3F4F6;border-radius:16px;padding:14px 16px;margin-bottom:10px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+                <span style="font-size:12px;color:#374151;font-weight:500;">{label}</span>
+                <span style="font-size:12px;font-weight:600;color:{color};">{value}%</span>
+            </div>
+            <div style="width:100%;height:6px;background:#F3F4F6;border-radius:999px;overflow:hidden;">
+                <div style="height:100%;border-radius:999px;transition:width 0.6s ease;width:{value}%;background:{gradient};"></div>
+            </div>
         </div>
-        <div class="progress-container">
-            <div class="progress-fill progress-energy" style="width: {energy}%;"></div>
-        </div>
-    </div>
-
-    <div class="wellness-card" style="margin-bottom: 16px;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-            <span style="font-size: 13px; font-weight: 500; color: #374151;">
-                <svg width="16" height="16" style="vertical-align: middle; margin-right: 6px;" viewBox="0 0 24 24" fill="none" stroke="#0D9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-                Mood
-            </span>
-            <span style="font-size: 13px; font-weight: 600; color: #0D9488;">{mood}%</span>
-        </div>
-        <div class="progress-container">
-            <div class="progress-fill progress-mood" style="width: {mood}%;"></div>
-        </div>
-    </div>
-
-    <div class="wellness-card">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-            <span style="font-size: 13px; font-weight: 500; color: #374151;">
-                <svg width="16" height="16" style="vertical-align: middle; margin-right: 6px;" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M2 12h20"/></svg>
-                XP to Next Level
-            </span>
-            <span style="font-size: 13px; font-weight: 600; color: #3B82F6;">{xp}/100</span>
-        </div>
-        <div class="progress-container">
-            <div class="progress-fill progress-xp" style="width: {xp}%;"></div>
-        </div>
-    </div>
-    """
-
-    return html
+        ''')
 
 
-def celebrate_animation():
-    """Render a confetti celebration effect."""
-    colors = ["#0D9488", "#14B8A6", "#F59E0B", "#3B82F6", "#F472B6", "#22C55E"]
-    confetti_html = ""
-
+def celebrate() -> str:
+    colors = ["#0D9488", "#14B8A6", "#F59E0B", "#3B82F6", "#F472B6", "#10B981"]
     import random
-    for i in range(30):
+    pieces = ""
+    for i in range(25):
         left = random.randint(0, 100)
-        delay = random.uniform(0, 1)
-        duration = random.uniform(2, 4)
+        delay = random.uniform(0, 1.2)
+        dur = random.uniform(2.5, 4)
         color = random.choice(colors)
-
-        confetti_html += f"""
-        <div class="confetti" style="left: {left}%; background: {color}; animation-delay: {delay}s; animation-duration: {duration}s;"></div>
-        """
+        pieces += f'<div style="position:fixed;width:8px;height:8px;top:-10px;border-radius:2px;animation:confetti-fall 3s ease-out forwards;z-index:9999;pointer-events:none;left:{left}%;background:{color};animation-delay:{delay}s;animation-duration:{dur}s;"></div>'
 
     return f"""
-    <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999;">
-        {confetti_html}
+    <style>
+    @keyframes confetti-fall {{
+        0% {{ transform: translateY(-20px) rotate(0deg); opacity: 1; }}
+        100% {{ transform: translateY(100vh) rotate(720deg); opacity: 0; }}
+    }}
+    </style>
+    <div style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;">
+        {pieces}
     </div>
     """
