@@ -10,6 +10,9 @@ class AppViewModel {
     var lastActivity: String?
     var showLevelUp = false
 
+    var customExercises: [Exercise] = []
+    var preferredActivityTab: ActivitySubTab = .move
+
     var schedule: [ScheduleItem] = [
         ScheduleItem(time: "08:00", activity: "Morning Breathe", type: .breathe),
         ScheduleItem(time: "12:30", activity: "Lunch Walk", type: .exercise),
@@ -59,11 +62,28 @@ class AppViewModel {
         }
     }
 
+    func addCustomExercise(name: String, description: String, colorHex: String) {
+        let ex = Exercise(
+            key: "custom_\(UUID().uuidString.prefix(8))",
+            name: name,
+            description: description,
+            colorHex: colorHex,
+            isNative: false,
+            hasGuidance: false
+        )
+        customExercises.append(ex)
+    }
+
+    func deleteCustomExercise(_ exercise: Exercise) {
+        customExercises.removeAll { $0.id == exercise.id }
+    }
+
     func reset() {
         pet = Pet()
         streakCurrent = 0
         activitiesToday = ["breathe": 0, "exercise": 0, "music": 0]
         lastActivity = nil
+        customExercises = []
         schedule = [
             ScheduleItem(time: "08:00", activity: "Morning Breathe", type: .breathe),
             ScheduleItem(time: "12:30", activity: "Lunch Walk", type: .exercise),

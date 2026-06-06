@@ -65,7 +65,8 @@ struct HomeView: View {
                 // Quick Actions
                 HStack(spacing: 12) {
                     Button {
-                        selectedTab = .breathe
+                        vm.preferredActivityTab = .breathe
+                        selectedTab = .activities
                     } label: {
                         HStack {
                             Spacer()
@@ -80,6 +81,7 @@ struct HomeView: View {
                     }
 
                     Button {
+                        vm.preferredActivityTab = .move
                         selectedTab = .activities
                     } label: {
                         HStack {

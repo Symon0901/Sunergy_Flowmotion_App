@@ -1,25 +1,23 @@
 import SwiftUI
 
 enum TabItem: String, CaseIterable {
-    case home, activities, breathe, schedule, profile
+    case home, activities, plan, profile
 
     var title: String {
         switch self {
-        case .home: return "Home"
-        case .activities: return "Move"
-        case .breathe: return "Breathe"
-        case .schedule: return "Plan"
-        case .profile: return "Me"
+        case .home:      return "Home"
+        case .activities: return "Activities"
+        case .plan:      return "Plan"
+        case .profile:   return "Me"
         }
     }
 
     var icon: AppIcon {
         switch self {
-        case .home: return .home
+        case .home:      return .home
         case .activities: return .activity
-        case .breathe: return .wind
-        case .schedule: return .calendar
-        case .profile: return .user
+        case .plan:      return .calendar
+        case .profile:   return .user
         }
     }
 }
@@ -46,19 +44,12 @@ struct FlowmotionApp: App {
                     }
                     .tag(TabItem.activities)
 
-                BreatheView(vm: vm)
+                PlanView(vm: vm)
                     .tabItem {
-                        IconView(.wind, size: 22, color: selectedTab == .breathe ? .cozyPrimary : .cozyTextTertiary)
-                        Text(TabItem.breathe.title)
+                        IconView(.calendar, size: 22, color: selectedTab == .plan ? .cozyPrimary : .cozyTextTertiary)
+                        Text(TabItem.plan.title)
                     }
-                    .tag(TabItem.breathe)
-
-                ScheduleView(vm: vm)
-                    .tabItem {
-                        IconView(.calendar, size: 22, color: selectedTab == .schedule ? .cozyPrimary : .cozyTextTertiary)
-                        Text(TabItem.schedule.title)
-                    }
-                    .tag(TabItem.schedule)
+                    .tag(TabItem.plan)
 
                 ProfileView(vm: vm)
                     .tabItem {

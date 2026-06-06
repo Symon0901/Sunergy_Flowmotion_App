@@ -1,0 +1,389 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		07A565F72438324488F82D6D /* PetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06FA14A1B63497E2685666C /* PetView.swift */; };
+		589055BBC4A020A330674452 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC77CCC2EAF36E40FA016F0 /* HomeView.swift */; };
+		60B5C6318D551A78D154C42D /* PlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E5E5245A9C23BC65BA698A /* PlanView.swift */; };
+		763E82404ADED55D37C6B7F0 /* ActivitiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0040735BD91462553F8553A5 /* ActivitiesView.swift */; };
+		9AB234FFDA6E33A98CB35957 /* Pet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A52243D41021E1A25009F6F /* Pet.swift */; };
+		9F84D9477F0E75707AA3E322 /* AppIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9859D0AC6E4E7ED1FC84CCFB /* AppIcons.swift */; };
+		A6D87720F92F8E313354A78B /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766485F0D0671AD6EA19488B /* ProfileView.swift */; };
+		BC03BE30978B6D3DB5357F61 /* ScheduleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01844C7CCF6C09BCF456E89 /* ScheduleItem.swift */; };
+		C312FEB0F6E5E80BC0783594 /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD22F1D919237DCF2C0BC4EB /* AppViewModel.swift */; };
+		C70813FAED45680A36CF4908 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9CFC04DC89698C8A45D0F7 /* ProgressBar.swift */; };
+		D0F5BE8E9C2D2B5D3784662B /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F278FF76437889C09A09959 /* Exercise.swift */; };
+		DE5AD778CFDA39C203100053 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286C93B0D722FC2993B5DBEC /* AppColors.swift */; };
+		DF917F614E17C73304B20963 /* FlowmotionApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1AAEA0E18F4157BB7E915F2 /* FlowmotionApp.swift */; };
+		F4490777614171C251CFD91F /* BreatheView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8ED7A37A986C1590C5298D1 /* BreatheView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0040735BD91462553F8553A5 /* ActivitiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesView.swift; sourceTree = "<group>"; };
+		1E9CFC04DC89698C8A45D0F7 /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
+		286C93B0D722FC2993B5DBEC /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
+		54E5E5245A9C23BC65BA698A /* PlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanView.swift; sourceTree = "<group>"; };
+		6EC77CCC2EAF36E40FA016F0 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		766485F0D0671AD6EA19488B /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		7A52243D41021E1A25009F6F /* Pet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pet.swift; sourceTree = "<group>"; };
+		7F278FF76437889C09A09959 /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
+		9859D0AC6E4E7ED1FC84CCFB /* AppIcons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIcons.swift; sourceTree = "<group>"; };
+		B06FA14A1B63497E2685666C /* PetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetView.swift; sourceTree = "<group>"; };
+		BD22F1D919237DCF2C0BC4EB /* AppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModel.swift; sourceTree = "<group>"; };
+		C51E3494DC3986F60F5C656C /* Flowmotion.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Flowmotion.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C8ED7A37A986C1590C5298D1 /* BreatheView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreatheView.swift; sourceTree = "<group>"; };
+		D01844C7CCF6C09BCF456E89 /* ScheduleItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleItem.swift; sourceTree = "<group>"; };
+		E1AAEA0E18F4157BB7E915F2 /* FlowmotionApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowmotionApp.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		0FE59885020E33CF921E67C7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7F278FF76437889C09A09959 /* Exercise.swift */,
+				7A52243D41021E1A25009F6F /* Pet.swift */,
+				D01844C7CCF6C09BCF456E89 /* ScheduleItem.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		1290282426DCDE1E80FAA6A3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C51E3494DC3986F60F5C656C /* Flowmotion.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		16233B421BB9961FFE697369 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				286C93B0D722FC2993B5DBEC /* AppColors.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		20924264B6A48FE1837BB3E8 = {
+			isa = PBXGroup;
+			children = (
+				5161E12957BB3B2A8B7D2E56 /* Flowmotion */,
+				1290282426DCDE1E80FAA6A3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		47B3355DD18B0E00BC22D34C /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				9859D0AC6E4E7ED1FC84CCFB /* AppIcons.swift */,
+				B06FA14A1B63497E2685666C /* PetView.swift */,
+				1E9CFC04DC89698C8A45D0F7 /* ProgressBar.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		4BE1D7621CC2CE4FED4C9373 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				BD22F1D919237DCF2C0BC4EB /* AppViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		5161E12957BB3B2A8B7D2E56 /* Flowmotion */ = {
+			isa = PBXGroup;
+			children = (
+				E1AAEA0E18F4157BB7E915F2 /* FlowmotionApp.swift */,
+				47B3355DD18B0E00BC22D34C /* Components */,
+				0FE59885020E33CF921E67C7 /* Models */,
+				16233B421BB9961FFE697369 /* Resources */,
+				4BE1D7621CC2CE4FED4C9373 /* ViewModels */,
+				AD948FF9AB52CC27F2703F89 /* Views */,
+			);
+			name = Flowmotion;
+			path = Sources/Flowmotion;
+			sourceTree = "<group>";
+		};
+		AD948FF9AB52CC27F2703F89 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0040735BD91462553F8553A5 /* ActivitiesView.swift */,
+				C8ED7A37A986C1590C5298D1 /* BreatheView.swift */,
+				6EC77CCC2EAF36E40FA016F0 /* HomeView.swift */,
+				54E5E5245A9C23BC65BA698A /* PlanView.swift */,
+				766485F0D0671AD6EA19488B /* ProfileView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		97C7AC9E6588785C4C1A0A77 /* Flowmotion */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 306B2C596CC04590C8BF4648 /* Build configuration list for PBXNativeTarget "Flowmotion" */;
+			buildPhases = (
+				5BF2AD6360233125CF62A216 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Flowmotion;
+			packageProductDependencies = (
+			);
+			productName = Flowmotion;
+			productReference = C51E3494DC3986F60F5C656C /* Flowmotion.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4EBF5F2059DD997A7134B90A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+				};
+			};
+			buildConfigurationList = D57A5777F6622763784D2EB7 /* Build configuration list for PBXProject "Flowmotion" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 20924264B6A48FE1837BB3E8;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 1290282426DCDE1E80FAA6A3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				97C7AC9E6588785C4C1A0A77 /* Flowmotion */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5BF2AD6360233125CF62A216 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				763E82404ADED55D37C6B7F0 /* ActivitiesView.swift in Sources */,
+				DE5AD778CFDA39C203100053 /* AppColors.swift in Sources */,
+				9F84D9477F0E75707AA3E322 /* AppIcons.swift in Sources */,
+				C312FEB0F6E5E80BC0783594 /* AppViewModel.swift in Sources */,
+				F4490777614171C251CFD91F /* BreatheView.swift in Sources */,
+				D0F5BE8E9C2D2B5D3784662B /* Exercise.swift in Sources */,
+				DF917F614E17C73304B20963 /* FlowmotionApp.swift in Sources */,
+				589055BBC4A020A330674452 /* HomeView.swift in Sources */,
+				9AB234FFDA6E33A98CB35957 /* Pet.swift in Sources */,
+				07A565F72438324488F82D6D /* PetView.swift in Sources */,
+				60B5C6318D551A78D154C42D /* PlanView.swift in Sources */,
+				A6D87720F92F8E313354A78B /* ProfileView.swift in Sources */,
+				C70813FAED45680A36CF4908 /* ProgressBar.swift in Sources */,
+				BC03BE30978B6D3DB5357F61 /* ScheduleItem.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		4CD22F514661B2DC3A320FBE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Flowmotion;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.symon.Flowmotion;
+				PRODUCT_NAME = Flowmotion;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		ACB57663E4F031D55305E788 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		D9F42057FA7C3DD86D2C79CB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Flowmotion;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.symon.Flowmotion;
+				PRODUCT_NAME = Flowmotion;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		ECB9381A839AAF602CAFD1A8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		306B2C596CC04590C8BF4648 /* Build configuration list for PBXNativeTarget "Flowmotion" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4CD22F514661B2DC3A320FBE /* Debug */,
+				D9F42057FA7C3DD86D2C79CB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		D57A5777F6622763784D2EB7 /* Build configuration list for PBXProject "Flowmotion" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ACB57663E4F031D55305E788 /* Debug */,
+				ECB9381A839AAF602CAFD1A8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4EBF5F2059DD997A7134B90A /* Project object */;
+}
