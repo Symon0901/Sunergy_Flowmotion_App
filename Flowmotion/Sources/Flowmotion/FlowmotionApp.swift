@@ -64,6 +64,14 @@ struct FlowmotionApp: App {
                 let appearance = UITabBarAppearance()
                 appearance.configureWithDefaultBackground()
                 appearance.backgroundColor = .systemBackground
+
+                let itemAppearance = UITabBarItemAppearance()
+                let normalFont = UIFont.systemFont(ofSize: 12, weight: .medium)
+                let selectedFont = UIFont.systemFont(ofSize: 12, weight: .semibold)
+                itemAppearance.normal.titleTextAttributes = [.font: normalFont]
+                itemAppearance.selected.titleTextAttributes = [.font: selectedFont]
+                appearance.stackedLayoutAppearance = itemAppearance
+
                 UITabBar.appearance().standardAppearance = appearance
                 UITabBar.appearance().scrollEdgeAppearance = appearance
                 #endif
