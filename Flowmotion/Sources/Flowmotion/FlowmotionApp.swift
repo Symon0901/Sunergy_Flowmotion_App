@@ -81,10 +81,14 @@ struct FlowmotionApp: App {
                 appearance.backgroundColor = .systemBackground
 
                 let itemAppearance = UITabBarItemAppearance()
-                let normalFont = UIFont.systemFont(ofSize: 12, weight: .medium)
-                let selectedFont = UIFont.systemFont(ofSize: 12, weight: .semibold)
-                itemAppearance.normal.titleTextAttributes = [.font: normalFont]
-                itemAppearance.selected.titleTextAttributes = [.font: selectedFont]
+                let normalFont = UIFont.systemFont(ofSize: 14, weight: .semibold)
+                let selectedFont = UIFont.systemFont(ofSize: 14, weight: .bold)
+                itemAppearance.normal.titleTextAttributes = [.font: normalFont, .foregroundColor: UIColor(Color.cozyTextTertiary)]
+                itemAppearance.selected.titleTextAttributes = [.font: selectedFont, .foregroundColor: UIColor(Color.cozyPrimary)]
+                itemAppearance.normal.iconColor = UIColor(Color.cozyTextTertiary)
+                itemAppearance.selected.iconColor = UIColor(Color.cozyPrimary)
+                itemAppearance.normal.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -2)
+                itemAppearance.selected.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -2)
                 appearance.stackedLayoutAppearance = itemAppearance
 
                 UITabBar.appearance().standardAppearance = appearance
