@@ -1,0 +1,418 @@
+{
+  "builtTestProducts" : [
+
+  ],
+  "copyCommands" : {
+
+  },
+  "explicitTargetDependencyImportCheckingMode" : {
+    "none" : {
+
+    }
+  },
+  "generatedSourceTargetSet" : [
+
+  ],
+  "pluginDescriptions" : [
+
+  ],
+  "swiftCommands" : {
+    "C.Flowmotion-arm64-apple-macosx-debug.module" : {
+      "executable" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "fileList" : "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/.build/arm64-apple-macosx/debug/Flowmotion.build/sources",
+      "importPath" : "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/.build/arm64-apple-macosx/debug/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/Sources/Flowmotion/Components/AppIcons.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/Sources/Flowmotion/Components/PetView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/Sources/Flowmotion/Components/ProgressBar.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/Sources/Flowmotion/FlowmotionApp.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/Sources/Flowmotion/Models/Exercise.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/Sources/Flowmotion/Models/Pet.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/Sources/Flowmotion/Models/ScheduleItem.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/Sources/Flowmotion/Resources/AppColors.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/Sources/Flowmotion/ViewModels/AppViewModel.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/Sources/Flowmotion/Views/ActivitiesView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/Sources/Flowmotion/Views/BreatheView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/Sources/Flowmotion/Views/HomeView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/Sources/Flowmotion/Views/ProfileView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/Sources/Flowmotion/Views/ScheduleView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/.build/arm64-apple-macosx/debug/Flowmotion.build/sources"
+        }
+      ],
+      "isLibrary" : true,
+      "moduleName" : "Flowmotion",
+      "moduleOutputPath" : "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/.build/arm64-apple-macosx/debug/Modules/Flowmotion.swiftmodule",
+      "objects" : [
+        "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/.build/arm64-apple-macosx/debug/Flowmotion.build/AppIcons.swift.o",
+        "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/.build/arm64-apple-macosx/debug/Flowmotion.build/PetView.swift.o",
+        "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/.build/arm64-apple-macosx/debug/Flowmotion.build/ProgressBar.swift.o",
+        "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/.build/arm64-apple-macosx/debug/Flowmotion.build/FlowmotionApp.swift.o",
+        "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/.build/arm64-apple-macosx/debug/Flowmotion.build/Exercise.swift.o",
+        "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/.build/arm64-apple-macosx/debug/Flowmotion.build/Pet.swift.o",
+        "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/.build/arm64-apple-macosx/debug/Flowmotion.build/ScheduleItem.swift.o",
+        "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/.build/arm64-apple-macosx/debug/Flowmotion.build/AppColors.swift.o",
+        "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/.build/arm64-apple-macosx/debug/Flowmotion.build/AppViewModel.swift.o",
+        "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/.build/arm64-apple-macosx/debug/Flowmotion.build/ActivitiesView.swift.o",
+        "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/.build/arm64-apple-macosx/debug/Flowmotion.build/BreatheView.swift.o",
+        "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/.build/arm64-apple-macosx/debug/Flowmotion.build/HomeView.swift.o",
+        "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/.build/arm64-apple-macosx/debug/Flowmotion.build/ProfileView.swift.o",
+        "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/.build/arm64-apple-macosx/debug/Flowmotion.build/ScheduleView.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx14.0",
+        "-incremental",
+        "-enable-batch-mode",
+        "-serialize-diagnostics",
+        "-index-store-path",
+        "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/.build/arm64-apple-macosx/debug/index/store",
+        "-Onone",
+        "-enable-testing",
+        "-j10",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+        "-module-cache-path",
+        "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/.build/arm64-apple-macosx/debug/ModuleCache",
+        "-parseable-output",
+        "-parse-as-library",
+        "-emit-objc-header",
+        "-emit-objc-header-path",
+        "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/.build/arm64-apple-macosx/debug/Flowmotion.build/include/Flowmotion-Swift.h",
+        "-swift-version",
+        "5",
+        "-plugin-path",
+        "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-g",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g",
+        "-package-name",
+        "flowmotion"
+      ],
+      "outputFileMapPath" : "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/.build/arm64-apple-macosx/debug/Flowmotion.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/.build/arm64-apple-macosx/debug/Flowmotion.build/AppIcons.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/.build/arm64-apple-macosx/debug/Flowmotion.build/PetView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/.build/arm64-apple-macosx/debug/Flowmotion.build/ProgressBar.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/.build/arm64-apple-macosx/debug/Flowmotion.build/FlowmotionApp.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/.build/arm64-apple-macosx/debug/Flowmotion.build/Exercise.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/.build/arm64-apple-macosx/debug/Flowmotion.build/Pet.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/.build/arm64-apple-macosx/debug/Flowmotion.build/ScheduleItem.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/.build/arm64-apple-macosx/debug/Flowmotion.build/AppColors.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/.build/arm64-apple-macosx/debug/Flowmotion.build/AppViewModel.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/.build/arm64-apple-macosx/debug/Flowmotion.build/ActivitiesView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/.build/arm64-apple-macosx/debug/Flowmotion.build/BreatheView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/.build/arm64-apple-macosx/debug/Flowmotion.build/HomeView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/.build/arm64-apple-macosx/debug/Flowmotion.build/ProfileView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/.build/arm64-apple-macosx/debug/Flowmotion.build/ScheduleView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/.build/arm64-apple-macosx/debug/Modules/Flowmotion.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : false,
+      "sources" : [
+        "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/Sources/Flowmotion/Components/AppIcons.swift",
+        "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/Sources/Flowmotion/Components/PetView.swift",
+        "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/Sources/Flowmotion/Components/ProgressBar.swift",
+        "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/Sources/Flowmotion/FlowmotionApp.swift",
+        "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/Sources/Flowmotion/Models/Exercise.swift",
+        "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/Sources/Flowmotion/Models/Pet.swift",
+        "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/Sources/Flowmotion/Models/ScheduleItem.swift",
+        "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/Sources/Flowmotion/Resources/AppColors.swift",
+        "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/Sources/Flowmotion/ViewModels/AppViewModel.swift",
+        "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/Sources/Flowmotion/Views/ActivitiesView.swift",
+        "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/Sources/Flowmotion/Views/BreatheView.swift",
+        "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/Sources/Flowmotion/Views/HomeView.swift",
+        "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/Sources/Flowmotion/Views/ProfileView.swift",
+        "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/Sources/Flowmotion/Views/ScheduleView.swift"
+      ],
+      "tempsPath" : "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/.build/arm64-apple-macosx/debug/Flowmotion.build",
+      "wholeModuleOptimization" : false
+    }
+  },
+  "swiftFrontendCommands" : {
+
+  },
+  "swiftTargetScanArgs" : {
+    "Flowmotion" : [
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "-module-name",
+      "Flowmotion",
+      "-package-name",
+      "flowmotion",
+      "-c",
+      "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/Sources/Flowmotion/Components/AppIcons.swift",
+      "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/Sources/Flowmotion/Components/PetView.swift",
+      "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/Sources/Flowmotion/Components/ProgressBar.swift",
+      "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/Sources/Flowmotion/FlowmotionApp.swift",
+      "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/Sources/Flowmotion/Models/Exercise.swift",
+      "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/Sources/Flowmotion/Models/Pet.swift",
+      "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/Sources/Flowmotion/Models/ScheduleItem.swift",
+      "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/Sources/Flowmotion/Resources/AppColors.swift",
+      "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/Sources/Flowmotion/ViewModels/AppViewModel.swift",
+      "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/Sources/Flowmotion/Views/ActivitiesView.swift",
+      "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/Sources/Flowmotion/Views/BreatheView.swift",
+      "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/Sources/Flowmotion/Views/HomeView.swift",
+      "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/Sources/Flowmotion/Views/ProfileView.swift",
+      "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/Sources/Flowmotion/Views/ScheduleView.swift",
+      "-I",
+      "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/.build/arm64-apple-macosx/debug/Modules",
+      "-target",
+      "arm64-apple-macosx14.0",
+      "-incremental",
+      "-enable-batch-mode",
+      "-serialize-diagnostics",
+      "-index-store-path",
+      "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/.build/arm64-apple-macosx/debug/index/store",
+      "-Onone",
+      "-enable-testing",
+      "-j10",
+      "-DSWIFT_PACKAGE",
+      "-DDEBUG",
+      "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+      "-module-cache-path",
+      "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/.build/arm64-apple-macosx/debug/ModuleCache",
+      "-parseable-output",
+      "-parse-as-library",
+      "-emit-objc-header",
+      "-emit-objc-header-path",
+      "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/.build/arm64-apple-macosx/debug/Flowmotion.build/include/Flowmotion-Swift.h",
+      "-swift-version",
+      "5",
+      "-plugin-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-I",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-L",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-g",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-package-name",
+      "flowmotion",
+      "-driver-use-frontend-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+    ]
+  },
+  "targetDependencyMap" : {
+    "Flowmotion" : [
+
+    ]
+  },
+  "testDiscoveryCommands" : {
+
+  },
+  "testEntryPointCommands" : {
+
+  },
+  "traitConfiguration" : {
+    "default" : {
+
+    }
+  },
+  "writeCommands" : {
+    "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/.build/arm64-apple-macosx/debug/Flowmotion.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/Sources/Flowmotion/Components/AppIcons.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/Sources/Flowmotion/Components/PetView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/Sources/Flowmotion/Components/ProgressBar.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/Sources/Flowmotion/FlowmotionApp.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/Sources/Flowmotion/Models/Exercise.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/Sources/Flowmotion/Models/Pet.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/Sources/Flowmotion/Models/ScheduleItem.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/Sources/Flowmotion/Resources/AppColors.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/Sources/Flowmotion/ViewModels/AppViewModel.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/Sources/Flowmotion/Views/ActivitiesView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/Sources/Flowmotion/Views/BreatheView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/Sources/Flowmotion/Views/HomeView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/Sources/Flowmotion/Views/ProfileView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/Sources/Flowmotion/Views/ScheduleView.swift"
+        }
+      ],
+      "outputFilePath" : "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/.build/arm64-apple-macosx/debug/Flowmotion.build/sources"
+    },
+    "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt" : {
+      "alwaysOutOfDate" : true,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<swift-get-version>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+        }
+      ],
+      "outputFilePath" : "/Users/JensenW/AA_EngEnv/gamified_wellness_app/Flowmotion/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
+    }
+  }
+}

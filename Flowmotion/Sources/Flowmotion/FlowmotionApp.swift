@@ -69,11 +69,13 @@ struct FlowmotionApp: App {
             }
             .tint(.cozyPrimary)
             .onAppear {
+                #if canImport(UIKit)
                 let appearance = UITabBarAppearance()
                 appearance.configureWithDefaultBackground()
                 appearance.backgroundColor = .systemBackground
                 UITabBar.appearance().standardAppearance = appearance
                 UITabBar.appearance().scrollEdgeAppearance = appearance
+                #endif
             }
         }
     }

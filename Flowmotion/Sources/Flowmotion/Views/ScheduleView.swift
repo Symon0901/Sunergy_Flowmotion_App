@@ -145,10 +145,11 @@ struct AddScheduleSheet: View {
                 }
 
                 TextField("Name", text: $newName)
-                    .textInputAutocapitalization(.words)
             }
             .navigationTitle("Add Activity")
+            #if canImport(UIKit)
             .navigationBarTitleDisplayMode(.inline)
+            #endif
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel", action: onCancel)
