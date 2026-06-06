@@ -114,13 +114,13 @@ struct ScheduleView: View {
     var recommendations: [String] {
         var recs: [String] = []
         if vm.pet.energy < 50 {
-            recs.append("Flowmotion's energy is low. Try a light walk.")
+            recs.append("Cozymo's energy is low. Try a light walk.")
         }
         if vm.pet.mood < 50 {
-            recs.append("Flowmotion seems stressed. Try breathing.")
+            recs.append("Cozymo seems stressed. Try breathing.")
         }
         if recs.isEmpty {
-            recs.append("Flowmotion is doing well! Keep it up.")
+            recs.append("Cozymo is doing well! Keep it up.")
         }
         return recs
     }

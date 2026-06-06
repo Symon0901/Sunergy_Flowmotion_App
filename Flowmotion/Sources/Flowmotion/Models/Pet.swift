@@ -5,9 +5,9 @@ enum PetState: String {
 
     var message: String {
         switch self {
-        case .happy:  return "Flowmotion is feeling great!"
-        case .neutral: return "Flowmotion could use some care."
-        case .tired:   return "Flowmotion needs your help!"
+        case .happy:  return "Cozymo is feeling great!"
+        case .neutral: return "Cozymo could use some care."
+        case .tired:   return "Cozymo needs your help!"
         }
     }
 
@@ -30,7 +30,7 @@ enum PetState: String {
 
 @Observable
 class Pet {
-    var name = "Flowmotion"
+    var name = "Cozymo"
     var level = 1
     var energy = 55
     var mood = 55

@@ -66,7 +66,7 @@ struct ActivitiesView: View {
                             .font(.cozyTitle3)
                             .foregroundColor(.cozyTextPrimary)
 
-                        Text("Flowmotion is cheering for you")
+                        Text("Cozymo is cheering for you")
                             .font(.cozyBody)
                             .foregroundColor(.cozyTextSecondary)
                     }
