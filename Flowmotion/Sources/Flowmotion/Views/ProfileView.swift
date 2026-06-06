@@ -56,6 +56,59 @@ struct ProfileView: View {
                 .padding(.horizontal, 20)
                 .padding(.top, 16)
 
+                // Unlocked Rewards
+                if !vm.pet.unlockedRewards.isEmpty {
+                    VStack(alignment: .leading, spacing: 12) {
+                        HStack {
+                            Text("Unlocked Rewards")
+                                .font(.cozyTitle3)
+                                .foregroundColor(.cozyTextPrimary)
+                            Spacer()
+                            Text("\(vm.pet.unlockedRewards.count)")
+                                .font(.cozyCaptionMedium)
+                                .foregroundColor(.cozyPrimary)
+                                .padding(.horizontal, 8)
+                                .padding(.vertical, 2)
+                                .background(Color.cozyPrimary.opacity(0.1))
+                                .cornerRadius(8)
+                        }
+
+                        LazyVStack(spacing: 8) {
+                            ForEach(vm.pet.unlockedRewards, id: \.self) { reward in
+                                HStack(spacing: 12) {
+                                    Image(systemName: reward.icon)
+                                        .font(.system(size: 18))
+                                        .foregroundColor(.cozyPrimary)
+                                        .frame(width: 32, height: 32)
+                                        .background(Color.cozyPrimary.opacity(0.1))
+                                        .cornerRadius(8)
+
+                                    VStack(alignment: .leading, spacing: 2) {
+                                        Text(reward.rawValue)
+                                            .font(.system(size: 14, weight: .semibold))
+                                            .foregroundColor(.cozyTextPrimary)
+                                        Text(reward.description)
+                                            .font(.cozyCaption)
+                                            .foregroundColor(.cozyTextSecondary)
+                                    }
+
+                                    Spacer()
+                                }
+                                .padding(.vertical, 4)
+                            }
+                        }
+                    }
+                    .padding(16)
+                    .background(Color.cozyCard)
+                    .cornerRadius(16)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 16)
+                            .stroke(Color.cozyBorder, lineWidth: 1)
+                    )
+                    .padding(.horizontal, 20)
+                    .padding(.top, 12)
+                }
+
                 // Weekly Progress
                 VStack(alignment: .leading, spacing: 12) {
                     Text("Weekly Progress")

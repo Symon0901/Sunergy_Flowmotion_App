@@ -59,7 +59,22 @@ struct FlowmotionApp: App {
                     .tag(TabItem.profile)
             }
             .tint(.cozyPrimary)
+            .overlay(
+                Group {
+                    if vm.showLevelUp {
+                        LevelUpOverlay(
+                            level: vm.pet.level,
+                            reward: vm.lastUnlockedReward,
+                            onDismiss: {
+                                vm.showLevelUp = false
+                                vm.lastUnlockedReward = nil
+                            }
+                        )
+                    }
+                }
+            )
             .onAppear {
+                vm.checkDailyReset()
                 #if canImport(UIKit)
                 let appearance = UITabBarAppearance()
                 appearance.configureWithDefaultBackground()
@@ -75,6 +90,95 @@ struct FlowmotionApp: App {
                 UITabBar.appearance().standardAppearance = appearance
                 UITabBar.appearance().scrollEdgeAppearance = appearance
                 #endif
+            }
+        }
+    }
+}
+
+struct LevelUpOverlay: View {
+    let level: Int
+    let reward: UnlockReward?
+    let onDismiss: () -> Void
+
+    @State private var scale: CGFloat = 0.5
+    @State private var opacity: Double = 0
+
+    var body: some View {
+        ZStack {
+            Color.black.opacity(0.4)
+                .ignoresSafeArea()
+                .onTapGesture { onDismiss() }
+
+            VStack(spacing: 20) {
+                Text("Level Up!")
+                    .font(.system(size: 32, weight: .bold, design: .rounded))
+                    .foregroundColor(.cozyPrimary)
+
+                ZStack {
+                    Circle()
+                        .fill(Color.cozyGold)
+                        .frame(width: 80, height: 80)
+
+                    Text("\(level)")
+                        .font(.system(size: 36, weight: .bold))
+                        .foregroundColor(.cozyGoldText)
+                }
+
+                Text("Cozymo is now Level \(level)")
+                    .font(.cozyTitle3)
+                    .foregroundColor(.cozyTextPrimary)
+
+                if let reward = reward {
+                    VStack(spacing: 8) {
+                        Text("New Unlock!")
+                            .font(.cozyOverline)
+                            .foregroundColor(.cozyPrimary)
+
+                        HStack(spacing: 12) {
+                            Image(systemName: reward.icon)
+                                .font(.system(size: 24))
+                                .foregroundColor(.cozyPrimary)
+
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text(reward.rawValue)
+                                    .font(.cozyBodyMedium)
+                                    .foregroundColor(.cozyTextPrimary)
+
+                                Text(reward.description)
+                                    .font(.cozyCaption)
+                                    .foregroundColor(.cozyTextSecondary)
+                            }
+
+                            Spacer()
+                        }
+                        .padding(14)
+                        .background(Color.cozyPrimary.opacity(0.08))
+                        .cornerRadius(12)
+                    }
+                }
+
+                Button(action: onDismiss) {
+                    Text("Awesome!")
+                        .font(.cozyBodyMedium)
+                        .foregroundColor(.white)
+                        .padding(.horizontal, 40)
+                        .padding(.vertical, 12)
+                        .background(Color.cozyPrimary)
+                        .cornerRadius(14)
+                }
+            }
+            .padding(24)
+            .background(Color.cozyCard)
+            .cornerRadius(20)
+            .shadow(color: .black.opacity(0.15), radius: 20, x: 0, y: 10)
+            .padding(.horizontal, 40)
+            .scaleEffect(scale)
+            .opacity(opacity)
+        }
+        .onAppear {
+            withAnimation(.spring(response: 0.4, dampingFraction: 0.7)) {
+                scale = 1.0
+                opacity = 1.0
             }
         }
     }
