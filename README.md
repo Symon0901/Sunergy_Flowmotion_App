@@ -1,6 +1,6 @@
-# Cozymo - Gamified Wellness Pet App
+# Flowmotion - Gamified Wellness Pet App
 
-A prototype wellness app built with Streamlit, featuring a virtual pet (Cozymo) that users care for through breathing exercises, physical activities, and relaxation.
+A prototype wellness app built with Streamlit, featuring a virtual pet (Flowmotion) that users care for through breathing exercises, physical activities, and relaxation.
 
 ## Features
 
